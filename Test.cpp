@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-
 char block[28][4][4]= 
 	{
 		{
@@ -148,11 +147,39 @@ char block[28][4][4]=
 	
 	};
 
-int main()
+int display_firstpage(void)
+{
+	
+
+	
+	printf("\n\n\t\t\tHong's Tetris Game"); 
+        printf("\n\n\t\t====================================="); 
+        printf("\n\n\t\t  Please Enter Space Key to Start!\n\n\n"); 
+      	printf("\n\n\t\t   ============================\n"); 
+       	printf("\n\t\t\t    J : Left\t"); 
+       	printf("\n\t\t\t    L : Right\t"); 
+	printf("\n\t\t\t    I : Up\t"); 
+	printf("\n\t\t\t    L : Soft Down\t"); 
+	printf("\n\t\t\t    A : Hard Down\t");  
+        printf("\n\n\t\t   ============================"); 
+	
+		
+	return 0;
+}
+void display_gamepage(void)
+{
+	printf("success\n");
+}
+
+
+int main(void)
 {
 	
 	int rotation;
 	int x, y;
+	
+
+	display_firstpage();
 
 	for(rotation=0; rotation<28; rotation++)
 	{
