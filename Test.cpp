@@ -10,6 +10,11 @@
 #define BOARD_START_X 10
 #define BOARD_START_Y 5
 
+#define BLOCK_START_X 30
+#define BLOCK_START_Y 6
+int currentBlockIndex;
+int rotation=0;
+
 void move_cur(int x, int y);
 
 static int  Board[BOARD_HEIGHT+1][BOARD_WIDTH+2]={0,};
@@ -195,7 +200,7 @@ int display_firstpage(void)
 	
 }
 
-void DrawGameBoard(void)
+void Draw_GameBoard(void)
 {
 	int x,y;
 	
@@ -238,19 +243,52 @@ void DrawGameBoard(void)
 		Board[BOARD_HEIGHT][x] =1;
 		
 	}	
-	refresh();
+	
 }
 
+void ChooseBlock(void)
+{
+	srand((unsigned int)time(NULL));
+	currentBlockIndex = (rand() % 7)* 4;
+	
+}
+int GetCurrentBlockNum(void)
+{
+	return currentBlockIndex + rotation;
+}
+void showFirstBlock(int Index, int a, int b)
+{
+	int x,y;
+	for(y=0; y<4; y++)
+	{
+		for(x=0; x<4;x++)
+		{
+			move_cur(a+x *2, b+y);
+			if(block[Index][y][x] ==1)
+				printf("■");
+			else
+				printf(" ");
+		}
+		
+	}
+	printf("\n");
 
-
+	
+}
 
 int main(void)
 {
 	initscr();
 	
 	display_firstpage();
-	sleep(5);
-	DrawGameBoard();
+	sleep(3);
+	Draw_GameBoard();
+
+	ChooseBlock();
+
+
+	showFirstBlock(currentBlockIndex,BLOCK_START_X,BLOCK_START_Y);
+	showFirstBlock(currentBlockIndex,30,15);
 	
 	
 	endwin();
